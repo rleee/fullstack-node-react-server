@@ -11,11 +11,16 @@
   "scripts": {
     "start": "node index.js",
     "_comment": "heroku will by default run the \"start script\"",
-    "dev": "nodemon index.js"
+    "just a divider": "-----------------------------------------------",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "_comment2": "on client script \"the --prefix\" mean run that npm run start from client folder"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "concurrently": "^5.1.0",
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "mongoose": "^5.8.10",
