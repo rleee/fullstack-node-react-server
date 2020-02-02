@@ -23,9 +23,19 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./routes/testRoutes")(app);
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+
+if (process.env.NODE_ENV === "production") {
+  // serving production assets, like main.js / main.css
+  app.use(express.static("client/build"));
+
+  // send back index.html if there are no route found
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(__dirname, "client", "build", "index.html");
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 // process.env.PORT will be used on heroku to determine which port will heroku use to run this app,

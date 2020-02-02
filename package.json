@@ -15,7 +15,9 @@
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "_comment2": "on client script \"the --prefix\" mean run that npm run start from client folder"
+    "_comment2": "on client script \"the --prefix\" mean run that npm run start from client folder",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "_comment3": "heroku-postbuild is to build client react on heroku"
   },
   "author": "",
   "license": "ISC",
